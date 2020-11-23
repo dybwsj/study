@@ -8,9 +8,9 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author: duyubo
@@ -21,14 +21,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configurable
 @EnableKnife4j
-@EnableSwagger2
-@ConditionalOnExpression("${knife4j.enable}")
+@ConditionalOnExpression(value = "${knife4j.enable}")
 public class SwaggerConfiguration {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .host("localhost")
-//                .enable()
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.self.study.controller"))
@@ -38,10 +36,12 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs(带认证）")
-                .description("更多Spring Boot相关文章请关注：https://blog.csdn.net/elvishehai")
-                .termsOfServiceUrl("https://blog.csdn.net/elvishehai")
+                .title("Spring Boot相关内容学习")
+                .description("更努力更加油")
                 .version("1.0")
+                .contact(new Contact("Study OpenApi",
+                        "http://localhost:9029/doc.html",
+                        "841869018@qq.com"))
                 .build();
     }
 }
