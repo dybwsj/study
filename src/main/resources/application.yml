@@ -1,0 +1,53 @@
+server:
+  port:
+    8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://121.196.146.222:3306/study?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password:
+    druid:
+      initial-size: 5 #连接池初始化大小
+      min-idle: 10 #最小空闲连接数
+      max-active: 20 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid
+
+mybatis:
+  mapper-locations: classpath:dao/*.xml
+
+jwt:
+  tokenHeader: Authorization
+  secret: secret
+  expiration: 604800
+  tokenHead: 'Bearer '
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /login
+      - /doc.html
+      - /config/**
+      - /api-docs-ext
+      - /swagger-resources
+      - /swagger-resources/configuraation/ui
+      - /META-INF/**
+      - /swagger-resources/**
+      - /api-docs
+      - /swagger-ui.html
+      - /error
+      - /v2/api-docs/**
+      - /v2/api-docs-ext/**
+      - /webjars/**
+
+knife4j:
+  basic:
+    username: admin
+    password: 123456
+    enable: true
+  production: false
+  enable: true
