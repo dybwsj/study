@@ -30,9 +30,9 @@ secure:
   ignored:
     urls: #安全路径白名单
       - /login
+      - /register
+      - /logout
       - /doc.html
-#      - /api-docs-ext
-#      - /META-INF/**
       - /swagger-resources/**
       - /api-docs
       - /swagger-ui.html

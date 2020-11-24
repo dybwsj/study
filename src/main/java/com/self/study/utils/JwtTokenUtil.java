@@ -45,6 +45,7 @@ public class JwtTokenUtil {
      * 从token中获取JWT中的负载
      */
     private Claims getClaimsFromToken(String token) {
+        token = token.substring(this.tokenHead.length());
         Claims claims = null;
         try {
             claims = Jwts.parser()
@@ -117,28 +118,28 @@ public class JwtTokenUtil {
 
     /**
      * 当原来的token没过期时是可以刷新的
-     *
-     * @param oldToken 带tokenHead的token
+     * 刷新token接口受登陆校验，能到这里证明token有效
+     * @param token 带tokenHead的token
      */
-    public String refreshHeadToken(String oldToken) {
-        if(StrUtil.isEmpty(oldToken)){
-            return null;
-        }
-        String token = oldToken.substring(tokenHead.length());
-        if(StrUtil.isEmpty(token)){
-            return null;
-        }
+    public String refreshHeadToken(String token) {
+//        if(StrUtil.isEmpty(oldToken)){
+//            return null;
+//        }
+//        String token = oldToken.substring(tokenHead.length());
+//        if(StrUtil.isEmpty(token)){
+//            return null;
+//        }
         //token校验不通过
         Claims claims = getClaimsFromToken(token);
-        if(claims==null){
-            return null;
-        }
+//        if(claims==null){
+//            return null;
+//        }
         //如果token已经过期，不支持刷新
-        if(isTokenExpired(token)){
-            return null;
-        }
+//        if(isTokenExpired(token)){
+//            return null;
+//        }
         //如果token在30分钟之内刚刷新过，返回原token
-        if(tokenRefreshJustBefore(token,30*60)){
+        if(tokenRefreshJustBefore(token,30 * 60)){
             return token;
         }else{
             claims.put(CLAIM_KEY_CREATED, new Date());

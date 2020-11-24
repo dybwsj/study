@@ -1,5 +1,8 @@
 package com.self.study.annotation;
 
+import com.self.study.validation.PhoneValidation;
+
+import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,17 +10,27 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+
 /**
  * @author: duyubo
  * @date: 2020年11月19日, 0019 11:25
  * @description:
  */
 
-@Target(ElementType.FIELD)
+@Target(FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Constraint(validatedBy = {PhoneValidation.class})
 public @interface Phone {
-    String message() default "手機號格式錯誤！";
+
+    String regexp() default "^1[345678]\\d{9}$";
+
+    String message() default "手机号格式错误！";
 
     /**
      * groups 为分组验证，不配置为Default组，

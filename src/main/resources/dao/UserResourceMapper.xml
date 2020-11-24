@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.self.study.dao.UserResourceDao">
-    <select id="getResourceListById" resultType="com.self.study.po.UserResource">
+    <select id="getResourceListById" resultType="com.self.study.po.UserResourcePO">
         SELECT
             ur.id id,
             ur.create_time createTime,
@@ -20,7 +20,7 @@
             ur.id
     </select>
 
-    <select id="listAllResource" resultType="com.self.study.po.UserResource">
+    <select id="listAllResource" resultType="com.self.study.po.UserResourcePO">
         SELECT
             id,
             `create_time` createTime,

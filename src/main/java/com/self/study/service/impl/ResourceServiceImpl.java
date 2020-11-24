@@ -2,7 +2,7 @@ package com.self.study.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.google.common.collect.Lists;
-import com.self.study.po.UserResource;
+import com.self.study.po.UserResourcePO;
 import com.self.study.dao.UserResourceDao;
 import com.self.study.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class ResourceServiceImpl implements ResourceService {
     private UserResourceDao userResourceDao;
 
     @Override
-    public List<UserResource> listAllResource() {
+    public List<UserResourcePO> listAllResource() {
 
-        List<UserResource> resources = userResourceDao.listAllResource();
+        List<UserResourcePO> resources = userResourceDao.listAllResource();
         if (CollectionUtil.isNotEmpty(resources)) {
             return userResourceDao.listAllResource();
         }

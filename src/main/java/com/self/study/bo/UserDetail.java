@@ -1,7 +1,7 @@
 package com.self.study.bo;
 
 import com.self.study.po.UserPO;
-import com.self.study.po.UserResource;
+import com.self.study.po.UserResourcePO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  */
 public class UserDetail implements UserDetails {
     private UserPO user;
-    private List<UserResource> resourceList;
+    private List<UserResourcePO> resourceList;
 
-    public UserDetail(UserPO user, List<UserResource> resourceList) {
+    public UserDetail(UserPO user, List<UserResourcePO> resourceList) {
         this.user = user;
         this.resourceList = resourceList;
     }
@@ -38,7 +38,7 @@ public class UserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getPhone();
     }
 
     @Override

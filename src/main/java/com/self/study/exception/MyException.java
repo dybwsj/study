@@ -7,14 +7,17 @@ package com.self.study.exception;
  */
 public class MyException extends RuntimeException {
     private int code;
-    private String message;
 
     public MyException(int code, String message) {
+        super(message);
         this.code = code;
-        this.message = message;
     }
 
     public MyException(String message) {
-        this.message = message;
+        super(message);
+    }
+
+    public int getCode() {
+        return this.code;
     }
 }

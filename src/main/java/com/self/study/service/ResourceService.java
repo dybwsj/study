@@ -1,6 +1,6 @@
 package com.self.study.service;
 
-import com.self.study.po.UserResource;
+import com.self.study.po.UserResourcePO;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ public interface ResourceService {
      * listAllResource
      * @return
      */
-    List<UserResource> listAllResource();
+    List<UserResourcePO> listAllResource();
 
 }

@@ -5,12 +5,12 @@ package com.self.study.exception;
  * @date: 2020年11月19日, 0019 13:43
  * @description:
  */
-public class EmailNotFoundException extends MyException {
-    public EmailNotFoundException(int code, String message) {
+public class LogonFailureException extends MyException {
+    public LogonFailureException(int code, String message) {
         super(code, message);
     }
 
-    public EmailNotFoundException(String message) {
+    public LogonFailureException(String message) {
         super(message);
     }
 }

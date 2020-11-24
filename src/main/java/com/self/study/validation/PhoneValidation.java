@@ -1,11 +1,10 @@
 package com.self.study.validation;
 
 import com.self.study.annotation.Phone;
-import com.self.study.utils.PhoneValidationUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.lang.annotation.Annotation;
+import java.util.regex.Pattern;
 
 /**
  * @author: duyubo
@@ -14,8 +13,16 @@ import java.lang.annotation.Annotation;
  */
 public class PhoneValidation implements ConstraintValidator<Phone, String> {
 
+    private String regexp;
+
+    @Override
+    public void initialize(Phone phone) {
+        this.regexp = phone.regexp();
+    }
+
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return PhoneValidationUtil.isPhone(s);
+        Pattern p = Pattern.compile(regexp);
+        return p.matcher(s).matches();
     }
 }

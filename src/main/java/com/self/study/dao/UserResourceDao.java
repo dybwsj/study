@@ -1,6 +1,6 @@
 package com.self.study.dao;
 
-import com.self.study.po.UserResource;
+import com.self.study.po.UserResourcePO;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public interface UserResourceDao {
      * @param userId
      * @return
      */
-    List<UserResource> getResourceListById(Long userId);
+    List<UserResourcePO> getResourceListById(Long userId);
     /**
      * listAllResource
      * @return
      */
-    List<UserResource> listAllResource();
+    List<UserResourcePO> listAllResource();
 
 }

@@ -1,7 +1,7 @@
 package com.self.study.config;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.self.study.po.UserResource;
+import com.self.study.po.UserResourcePO;
 import com.self.study.component.DynamicAccessDecisionManager;
 import com.self.study.component.DynamicSecurityFilter;
 import com.self.study.component.DynamicSecurityMetadataSource;
@@ -135,9 +135,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DynamicSecurityService dynamicSecurityService() {
         return () -> {
             Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
-            List<UserResource> resourceList = resourceService.listAllResource();
+            List<UserResourcePO> resourceList = resourceService.listAllResource();
             if (CollectionUtil.isNotEmpty(resourceList)) {
-                for (UserResource resource : resourceList) {
+                for (UserResourcePO resource : resourceList) {
                     map.put(resource.getUrl(), new org.springframework.security.access.SecurityConfig(resource.getId() + ":" + resource.getName()));
                 }
             }

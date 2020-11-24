@@ -1,5 +1,6 @@
 package com.self.study.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,12 +13,11 @@ import lombok.Data;
 @Data
 public class UserPO {
     private Long id;
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-    @ApiModelProperty(value = "密码")
-    private String password;
     @ApiModelProperty(value = "电话")
     private String phone;
+    @ApiModelProperty(value = "密码")
+    @JsonIgnore
+    private String password;
     @ApiModelProperty(value = "昵称")
     private String nickname;
     @ApiModelProperty(value = "状态")

@@ -12,7 +12,7 @@ import java.util.Date;
  */
 
 @Data
-public class UserResource {
+public class UserResourcePO {
     private Long id;
 
     @ApiModelProperty(value = "创建时间")

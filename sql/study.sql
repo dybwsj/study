@@ -3,16 +3,15 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
-    `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
-    `password` varchar(64) DEFAULT NULL COMMENT '密码',
     `phone` char(11) DEFAULT NULL COMMENT '电话',
+    `password` varchar(64) DEFAULT NULL COMMENT '密码',
     `nickname` varchar(200) DEFAULT NULL COMMENT '昵称',
     `status` int(1) DEFAULT '1' COMMENT '账号启用状态：1.启用 0.禁用',
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=UTF8 COMMENT='用户表';
 
-INSERT INTO `user` VALUES ('1', '841869018@qq.com', '$2a$10$iYuTs3CeureCDP5oBNHvz.n3J.9Q/WuitTTM.R/.GWxKbBoMHEhOC', '15680735503', '杜宇博', '1');
-INSERT INTO `user` VALUES ('2', '1764794591@qq.com', '$2a$10$iYuTs3CeureCDP5oBNHvz.n3J.9Q/WuitTTM.R/.GWxKbBoMHEhOC', '17761402495', '小杜', '1');
+INSERT INTO `user` VALUES ('1', '15680735503', '$2a$10$iYuTs3CeureCDP5oBNHvz.n3J.9Q/WuitTTM.R/.GWxKbBoMHEhOC', '杜宇博', '1');
+INSERT INTO `user` VALUES ('2', '17761402495', '$2a$10$iYuTs3CeureCDP5oBNHvz.n3J.9Q/WuitTTM.R/.GWxKbBoMHEhOC', '小杜', '1');
 
 DROP TABLE IF EXISTS `user_role_relation`;
 CREATE TABLE `user_role_relation` (

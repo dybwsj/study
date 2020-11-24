@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan(value = "com.self.study.dao")
 public class StudyApplication {
     public static void main(String[] args) {
         SpringApplication.run(StudyApplication.class, args);

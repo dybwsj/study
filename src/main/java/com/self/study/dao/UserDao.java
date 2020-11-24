@@ -7,9 +7,16 @@ import com.self.study.po.UserPO;
  */
 public interface UserDao {
     /**
-     * getUserByEmail
-     * @param email
+     * getUserByPhone
+     * @param phone
      * @return
      */
-    UserPO getUserByEmail(String email);
+    UserPO getUserByPhone(String phone);
+
+    /**
+     * insertUser
+     * @param user
+     * @return
+     */
+    Integer insertUser(UserPO user);
 }
