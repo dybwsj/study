@@ -19,7 +19,7 @@ import javax.validation.Valid;
  * @description:
  */
 
-@Api(value = "用户管理类")
+@Api(tags = "用户管理类")
 @RestController
 public class UserController {
 

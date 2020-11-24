@@ -31,15 +31,11 @@ secure:
     urls: #安全路径白名单
       - /login
       - /doc.html
-      - /config/**
-      - /api-docs-ext
-      - /swagger-resources
-      - /swagger-resources/configuraation/ui
-      - /META-INF/**
+#      - /api-docs-ext
+#      - /META-INF/**
       - /swagger-resources/**
       - /api-docs
       - /swagger-ui.html
-      - /error
       - /v2/api-docs/**
       - /v2/api-docs-ext/**
       - /webjars/**
