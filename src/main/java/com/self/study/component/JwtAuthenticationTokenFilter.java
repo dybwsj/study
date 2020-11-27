@@ -1,6 +1,7 @@
 package com.self.study.component;
 
 import com.self.study.utils.JwtTokenUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ import java.io.IOException;
  * @date: 2020年11月19日, 0019 15:04
  * @description: JWT登录授权过滤器
  */
+
+@Slf4j
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -43,15 +46,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String token = request.getHeader(this.tokenHeader);
         if (token != null && token.startsWith(this.tokenHead)) {
             String phone = jwtTokenUtil.getUserNameFromToken(token);
-            LOGGER.info("checking phone:{}", phone);
+            log.info("checking phone:{}", phone);
             if (phone != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(phone);
-                if (jwtTokenUtil.validateToken(token, userDetails)) {
+
+                //jwtTokenUtil.getUserNameFromToken 中会对当前token进行过期校验
+//                if (jwtTokenUtil.validateToken(token, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    LOGGER.info("authenticated phone:{}", phone);
+                    log.info("authenticated phone:{}", phone);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
+//                }
             }
         }
         chain.doFilter(request, response);

@@ -1,6 +1,4 @@
-package com.self.study.validation;
-
-import com.self.study.annotation.Phone;
+package com.self.study.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -11,7 +9,7 @@ import java.util.regex.Pattern;
  * @date: 2020年11月19日, 0019 11:19
  * @description:
  */
-public class PhoneValidation implements ConstraintValidator<Phone, String> {
+public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     private String regexp;
 

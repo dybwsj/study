@@ -31,4 +31,10 @@ public class AssertUtil {
             throw new MyException(message);
         }
     }
+
+    public static void isEqual(String a, String b, String message) {
+        if (!a.equals(b)) {
+            throw new MyException(message);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.self.study.config;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.self.study.component.RestfulLogoutHandler;
 import com.self.study.po.UserResourcePO;
 import com.self.study.component.DynamicAccessDecisionManager;
 import com.self.study.component.DynamicSecurityFilter;
@@ -83,10 +84,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedHandler(restfulAccessDeniedHandler())
                 .authenticationEntryPoint(restAuthenticationEntryPoint())
+
                 // 自定义权限拦截器JWT过滤器
                 .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class);
+                .addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class)
+                .logout()
+                .addLogoutHandler(restfulLogoutHandler());
     }
 
     @Override
@@ -168,6 +172,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     protected UserDetailsService userDetailsService() {
         return username -> userService.loadUserByUsername(username);
+    }
+
+    @Bean
+    protected RestfulLogoutHandler restfulLogoutHandler() {
+        return new RestfulLogoutHandler();
     }
 
 }

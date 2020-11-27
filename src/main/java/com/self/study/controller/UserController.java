@@ -7,6 +7,7 @@ import com.self.study.po.UserPO;
 import com.self.study.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ import java.util.HashMap;
 
 @Api(tags = "用户管理类")
 @RestController
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -42,6 +44,7 @@ public class UserController {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("header", header);
         hashMap.put("token", token);
+        log.info("用户登录—————" + param.getPhone());
         return ResultVO.success("登陆成功！", hashMap);
     }
 
@@ -49,6 +52,7 @@ public class UserController {
     @PostMapping("/register")
     public ResultVO register(@RequestBody @Valid RegisterParam param) {
         userService.register(param);
+        log.info("用户注册—————" + param.getPhone());
         return ResultVO.success("注册成功！");
     }
 
@@ -61,17 +65,6 @@ public class UserController {
         hashMap.put("token", token);
         return ResultVO.success("刷新token成功！", hashMap);
     }
-
-    /**
-     * fixme 请求logout路径会报405，怀疑是SpringSecurity的原因
-     * @param request
-     * @return
-     */
-//    @ApiOperation("登出")
-//    @RequestMapping(value = "/admin/logout", method = RequestMethod.POST)
-//    public ResultVO test() {
-//        return ResultVO.success(null);
-//    }
 
     @ApiOperation("获取用户信息")
     @PostMapping("/getUserInfo")

@@ -1,6 +1,6 @@
 package com.self.study.param;
 
-import com.self.study.annotation.Phone;
+import com.self.study.validator.Phone;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

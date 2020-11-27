@@ -10,6 +10,7 @@ import com.self.study.dao.UserDao;
 import com.self.study.service.UserService;
 import com.self.study.utils.AssertUtil;
 import com.self.study.utils.JwtTokenUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.security.authentication.AuthenticationManager;

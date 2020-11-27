@@ -2,6 +2,7 @@ package com.self.study.handler;
 
 import com.self.study.common.ResultVO;
 import com.self.study.exception.MyException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @ControllerAdvice
 @ResponseBody
+@Slf4j
 public class MyExceptionHandler {
 
     @ExceptionHandler(value = BindException.class)
@@ -31,11 +33,13 @@ public class MyExceptionHandler {
         sb.append(']');
 
         String msg = sb.toString();
+        log.warn("参数校验错误————" + msg);
         return ResultVO.fail(msg);
     }
 
     @ExceptionHandler(value = MyException.class)
     public ResultVO myExceptionHandler(Exception e) {
+        log.warn("访问出错————", e);
         return ResultVO.fail(e.getMessage());
     }
 

@@ -40,7 +40,7 @@ public class SwaggerConfiguration {
                 .description("更努力更加油")
                 .version("1.0")
                 .contact(new Contact("Study OpenApi",
-                        "http://localhost:9029/doc.html",
+                        "http://localhost:8080/doc.html",
                         "841869018@qq.com"))
                 .build();
     }

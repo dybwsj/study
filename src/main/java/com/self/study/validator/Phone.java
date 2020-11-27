@@ -1,20 +1,13 @@
-package com.self.study.annotation;
-
-import com.self.study.validation.PhoneValidation;
+package com.self.study.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
 
 /**
  * @author: duyubo
@@ -25,7 +18,7 @@ import static java.lang.annotation.ElementType.PARAMETER;
 @Target(FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {PhoneValidation.class})
+@Constraint(validatedBy = {PhoneValidator.class})
 public @interface Phone {
 
     String regexp() default "^1[345678]\\d{9}$";
