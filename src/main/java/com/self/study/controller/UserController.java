@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,9 @@ public class UserController {
     @Value("${jwt.tokenHeader}")
     private String header;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @ApiOperation("登陆")
     @PostMapping("/login")
     public ResultVO login(@RequestBody @Valid LoginParam param) {
@@ -51,9 +55,13 @@ public class UserController {
     @ApiOperation("注册")
     @PostMapping("/register")
     public ResultVO register(@RequestBody @Valid RegisterParam param) {
-        userService.register(param);
-        log.info("用户注册—————" + param.getPhone());
-        return ResultVO.success("注册成功！");
+        String code = redisTemplate.opsForValue().get(param.getPhone());
+        if (param.getCode().equals(code)) {
+            userService.register(param);
+            log.info("用户注册—————" + param.getPhone());
+            return ResultVO.success("注册成功！");
+        }
+        return ResultVO.fail("验证码错误！");
     }
 
     @ApiOperation("刷新token")

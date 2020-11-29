@@ -31,6 +31,24 @@ spring:
       stat-view-servlet: #访问监控网页的登录用户名和密码
         login-username: druid
         login-password: druid
+  redis:
+    host: 121.196.146.222
+    password: dyb970324
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 3
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 8
+#        min-idle: 3
+    database: 0
+    timeout: 3600
 
 mybatis:
   mapper-locations: classpath:dao/*.xml
@@ -54,6 +72,7 @@ secure:
       - /v3/api-docs-ext/**
       - /webjars/**
       - /druid/**
+      - /sendMessage
 
 knife4j:
   enable: true
@@ -68,3 +87,6 @@ aliyun:
   accessKeySecret: yVzaJoQFBlT4URSnjbDpy8a51t4UpQ
   signName: 成都东软学院在线考试系统
   templateCode: SMS_189245775
+
+sendSms:
+  codeExpiration: 300

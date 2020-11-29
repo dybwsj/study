@@ -6,18 +6,19 @@ import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
-import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.self.study.service.SmsService;
 import com.self.study.utils.AssertUtil;
-import jdk.nashorn.internal.parser.JSONParser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: duyubo
@@ -36,6 +37,13 @@ public class SmsServiceImpl implements SmsService {
     private String signName;
     @Value("${aliyun.templateCode}")
     private String templateCode;
+
+    @Value("${sendSms.codeExpiration}")
+    private Long codeExpiration;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @Override
     public boolean sendMessage(String phone) {
 
@@ -52,7 +60,11 @@ public class SmsServiceImpl implements SmsService {
         request.putQueryParameter("TemplateCode", templateCode);
 
         Map<String, String> params = new HashMap<>();
-        String code = String.valueOf(Math.random()).substring(3, 9);
+        String code;
+        if ((code = redisTemplate.opsForValue().get(phone)) == null) {
+            code = String.valueOf(Math.random()).substring(3, 9);
+            redisTemplate.opsForValue().set(phone, code, codeExpiration, TimeUnit.SECONDS);
+        }
         params.put("code", code);
         request.putQueryParameter("TemplateParam", JSON.toJSONString(params));
         try {

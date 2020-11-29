@@ -1,5 +1,7 @@
 package com.self.study.validator;
 
+import com.self.study.utils.AssertUtil;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
@@ -20,6 +22,9 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+        if (s == null) {
+            return false;
+        }
         Pattern p = Pattern.compile(regexp);
         return p.matcher(s).matches();
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 /**
@@ -40,7 +41,13 @@ public class MyExceptionHandler {
     @ExceptionHandler(value = MyException.class)
     public ResultVO myExceptionHandler(Exception e) {
         log.warn("访问出错————", e);
-        return ResultVO.fail(e.getMessage());
+        return ResultVO.fail(e.getCause().getMessage());
+    }
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResultVO constraintViolationExceptionHandler(Exception e) {
+        log.warn("参数校验出错", e);
+        String[] result = e.getMessage().split(":");
+        return ResultVO.fail(result[1]);
     }
 
 }

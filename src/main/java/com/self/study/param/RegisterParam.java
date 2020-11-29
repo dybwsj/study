@@ -26,4 +26,7 @@ public class RegisterParam {
     @NotEmpty(message = "用户昵称不能为空！")
     @ApiModelProperty("昵称")
     private String nickname;
+    @NotEmpty(message = "验证码不能为空！")
+    @ApiModelProperty("验证码")
+    private String code;
 }
