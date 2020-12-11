@@ -90,3 +90,14 @@ aliyun:
 
 sendSms:
   codeExpiration: 300
+
+dubbo:
+  application:
+    name: dubbo_provider
+  registry:
+    address: 121.196.146.222
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.self.study.service

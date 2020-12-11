@@ -11,10 +11,10 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.self.study.service.SmsService;
 import com.self.study.utils.AssertUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @description:
  */
 
-@Service
+@DubboService(interfaceClass = SmsService.class, version = "1.0.0")
 @Slf4j
 public class SmsServiceImpl implements SmsService {
     @Value("${aliyun.accessKeyID}")

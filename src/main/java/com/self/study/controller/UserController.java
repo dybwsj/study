@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,5 +80,11 @@ public class UserController {
     public ResultVO getUserInfo(HttpServletRequest request) {
         UserPO userInfo = userService.getUserInfo(request.getHeader(header));
         return ResultVO.success(userInfo);
+    }
+
+    @GetMapping("/test")
+    public String test(HttpServletRequest request) {
+        request.getSession().setAttribute("key","value");
+        return "success";
     }
 }

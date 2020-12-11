@@ -6,13 +6,12 @@ import com.self.study.utils.AssertUtil;
 import com.self.study.validator.Phone;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,6 +25,7 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class SmsController {
 
+//    @DubboReference(version = "1.0.0")
     @Autowired
     private SmsService smsService;
 
