@@ -15,6 +15,7 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,8 @@ import java.util.concurrent.TimeUnit;
  * @description:
  */
 
-@DubboService(interfaceClass = SmsService.class, version = "1.0.0")
+@Service
+//@DubboService(interfaceClass = SmsService.class, version = "1.0.0")
 @Slf4j
 public class SmsServiceImpl implements SmsService {
     @Value("${aliyun.accessKeyID}")
