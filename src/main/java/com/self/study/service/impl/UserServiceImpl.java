@@ -1,16 +1,15 @@
 package com.self.study.service.impl;
 
 import com.self.study.bo.UserDetail;
+import com.self.study.dao.UserResourceDao;
 import com.self.study.exception.LogonFailureException;
 import com.self.study.param.RegisterParam;
 import com.self.study.po.UserResourcePO;
-import com.self.study.dao.UserResourceDao;
 import com.self.study.po.UserPO;
 import com.self.study.dao.UserDao;
 import com.self.study.service.UserService;
 import com.self.study.utils.AssertUtil;
 import com.self.study.utils.JwtTokenUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.security.authentication.AuthenticationManager;

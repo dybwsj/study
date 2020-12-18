@@ -2,8 +2,8 @@ package com.self.study.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.google.common.collect.Lists;
-import com.self.study.po.UserResourcePO;
 import com.self.study.dao.UserResourceDao;
+import com.self.study.po.UserResourcePO;
 import com.self.study.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

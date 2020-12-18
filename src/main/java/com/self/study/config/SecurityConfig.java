@@ -1,13 +1,13 @@
 package com.self.study.config;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.self.study.component.JwtAuthenticationTokenFilter;
 import com.self.study.component.RestfulLogoutHandler;
 import com.self.study.po.UserResourcePO;
 import com.self.study.component.DynamicAccessDecisionManager;
 import com.self.study.component.DynamicSecurityFilter;
 import com.self.study.component.DynamicSecurityMetadataSource;
 import com.self.study.component.DynamicSecurityService;
-import com.self.study.component.JwtAuthenticationTokenFilter;
 import com.self.study.component.RestAuthenticationEntryPoint;
 import com.self.study.component.RestfulAccessDeniedHandler;
 import com.self.study.service.ResourceService;

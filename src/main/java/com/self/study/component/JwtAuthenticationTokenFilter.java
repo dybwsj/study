@@ -27,7 +27,7 @@ import java.io.IOException;
 
 @Slf4j
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-//    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
+    //    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -52,10 +52,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
                 //jwtTokenUtil.getUserNameFromToken 中会对当前token进行过期校验
 //                if (jwtTokenUtil.validateToken(token, userDetails)) {
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    log.info("authenticated phone:{}", phone);
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                log.info("authenticated phone:{}", phone);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
 //                }
             }
         }
